@@ -1,0 +1,83 @@
+
+#include "Servo.h"
+
+
+//==========SERVOS==========
+Servo servo1;
+Servo servo2;
+Servo servo3;
+Servo servo4;
+Servo servo5;
+Servo servo6;
+
+int pos1 = 0;
+int pos2 = 0;
+int pos3 = 0;
+int pos4 = 0;
+int pos5 = 0;
+
+#define polegar = A0;
+#define indicador = A1;
+#define medio = A3;
+#define anelar = A4;
+#define minimo = A5;
+
+int leituraPolegar = 0;
+int leituraIndicador = 0;
+int leituraMedio = 0;
+int leituraAnelar = 0;
+int leituraMinimo = 0;
+
+
+//============================
+
+void setup() {
+  
+Serial.begin(9600);
+servo1.attach(3);
+servo2.attach(5);
+servo3.attach(6);
+servo4.attach(9);
+servo5.attach(10);
+
+pinMode(polegar,INPUT);
+pinMode(indicador,INPUT);
+pinMode(medio,INPUT);
+pinMode(anelar,INPUT);
+pinMode(minimo,INPUT);
+
+myservo1.write(170);
+myservo2.write(170);
+myservo3.write(170);
+myservo4.write(170);
+myservo5.write(170);
+delay(1500);
+}
+
+void loop() {
+
+leituraPolegar = analogRead(polegar);
+leituraIndicador = analogRead(indicador);
+leituraMedio = analogRead(medio);
+leituraAnelar = analogRead(anelar);
+leituraMinimo = analogRead(minimo);
+
+Serial.println(leituraPolegar);
+Serial.println(leituraPolegar);
+Serial.println(leituraIndicador);
+Serial.println(leituraMedio);
+Serial.println(leituraAnelar);
+Serial.println(leituraMinimo);
+
+pos1 = map(leituraPolegar,MIM_IN,MAX_IN,MIN_OUT,MAX_OUT)
+servo1.write(pos1);
+pos2 = map(leituraIndicador,MIM_IN,MAX_IN,MIN_OUT,MAX_OUT)
+servo1.write(pos2);
+pos3 = map(leituraMedio,MIM_IN,MAX_IN,MIN_OUT,MAX_OUT)
+servo1.write(pos3);
+pos4 = map(leituraAnelar,MIM_IN,MAX_IN,MIN_OUT,MAX_OUT)
+servo1.write(pos4);
+pos5 = map(leituraMinimo,MIM_IN,MAX_IN,MIN_OUT,MAX_OUT)
+servo1.write(pos5);
+delay(50);
+}
